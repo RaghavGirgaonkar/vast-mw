@@ -94,6 +94,12 @@ def main():
     parser.add_argument(
         "--radius", default=15, type=float, help="Search radius (arcsec)"
     )
+    parser.add_argument(
+        "--reg", default=False, type=bool, help="Create ds9 region file"
+    )
+    parser.add_argument(
+        "--reg-radius", default=15, type=float, help="Radius for ds9 region file (arcsec)"
+    )
     parser.add_argument("-u", "--url", action="store_true", help="Return URL")
     parser.add_argument(
         "-v", "--verbosity", default=0, action="count", help="Increase output verbosity"
@@ -117,11 +123,17 @@ def main():
             level(
                 f"For source at '{vast_mw.format_radec(source)}' = '{vast_mw.format_radec_decimal(source)}', found {len(results)} {service} matches within {args.radius} arcsec"
             )
-            for k, v in sorted(results.items(), key=lambda x: x[1]):
+            for k, v in sorted(results.items(), key=lambda item: item[1]['separation']):
                 s = vast_mw.format_name(source)
+                src = s.replace(" ", "_")
                 if name is not None:
                     s += f"[{name}]"
-                out = f"{s}\t{k}: {v:4.1f}"
+                out = f"{s}\t{k}: {v['separation']:4.1f}"
                 if vast_mw.services[service][1] is not None and args.url:
                     out += f"\t{getattr(vast_mw, vast_mw.services[service][1])(k)}"
                 print(out)
+            if args.reg:
+                vast_mw.create_regfile(
+                    results, radius=args.reg_radius, func=src + f"_check_{service.lower()}"
+                )
+                print("Wrote ds9 region file " + f"{src}_check_{service.lower()}.reg")
