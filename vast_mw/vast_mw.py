@@ -69,7 +69,7 @@ def table_to_dict(table: Table) -> Dict:
     return out
 
 #Function to parse output and create a ds9 region file
-def create_regfile(results, radius,func):
+def create_regfile(results, radius,filename):
     '''Function to create a ds9 region file from the results of a catalog check. 
     Parameters
     ----------
@@ -77,7 +77,7 @@ def create_regfile(results, radius,func):
         Dictionary of results from a catalog check function
     radius : int
         Radius of circle to draw in arcsceconds
-        func : function used for the catalog check
+        filename : Name of the output file (without .reg extension)
     Returns
     -------
     None
@@ -88,13 +88,14 @@ def create_regfile(results, radius,func):
     results = temp_results if isinstance(results, Table) else results
     keys = list(results.keys())
     #Open a file to write the ds9 region data
-    with open(func + ".reg", "w") as f:
+    with open(filename + ".reg", "w") as f:
         f.write("# Region file format: DS9 version 4.1\n")
         f.write("global color=green dashlist=8 3 width=1 font=\"helvetica 10 normal roman\" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1\n")
         f.write("fk5\n")
         for k in keys:
             c = results[k]['coords']
             f.write(f"circle({c.ra.to(u.deg).value},{c.dec.to(u.deg).value},{radius}\")\n")
+    f.close()
 
 
 def format_radec_decimal(coord: SkyCoord) -> str:

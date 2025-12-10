@@ -132,6 +132,6 @@ def main():
         if args.reg:
             if len(results) > 0:
                 vast_mw.create_regfile(
-                    results, radius=args.reg_radius, func=src + "_check_simbad"
+                    results, radius=args.reg_radius, filename=src + "_check_simbad"
                 )
-                print("Wrote ds9 region file " + f"{src}_check_simbad.reg")
+                log.info("Wrote ds9 region file " + f"{src}_check_simbad.reg")

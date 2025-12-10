@@ -86,6 +86,6 @@ def main():
         if args.reg:
             if len(results) > 0:
                 vast_mw.create_regfile(
-                    results, radius=args.reg_radius, func=src + "_check_pulsarscraper"
+                    results, radius=args.reg_radius, filename=src + "_check_pulsarscraper"
                 )
-                print("Wrote ds9 region file " + f"{src}_check_pulsarscraper.reg")
+                log.info("Wrote ds9 region file " + f"{src}_check_pulsarscraper.reg")

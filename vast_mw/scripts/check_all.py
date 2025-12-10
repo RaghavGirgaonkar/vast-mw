@@ -134,6 +134,6 @@ def main():
                 print(out)
             if args.reg:
                 vast_mw.create_regfile(
-                    results, radius=args.reg_radius, func=src + f"_check_{service.lower()}"
+                    results, radius=args.reg_radius, filename=src + f"_check_{service.lower()}"
                 )
-                print("Wrote ds9 region file " + f"{src}_check_{service.lower()}.reg")
+                log.info("Wrote ds9 region file " + f"{src}_check_{service.lower()}.reg")

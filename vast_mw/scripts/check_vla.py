@@ -138,6 +138,6 @@ def main():
     if args.reg:
         if len(results) > 0:
             vast_mw.create_regfile(
-                results, radius=args.reg_radius, func = vast_mw.format_name(source).replace(" ", "_") + "_check_vla"
+                results, radius=args.reg_radius, filename=vast_mw.format_name(source).replace(" ", "_") + "_check_vla"
             )
-            print("Wrote ds9 region file " + f"{vast_mw.format_name(source).replace(' ', '_')}_check_vla.reg")
+            log.info("Wrote ds9 region file " + f"{vast_mw.format_name(source).replace(' ', '_')}_check_vla.reg")
