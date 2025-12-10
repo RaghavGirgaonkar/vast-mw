@@ -99,12 +99,12 @@ VAST J1105.3+4332	Gaia DR3 778947814402602752: 37.5 arcsec	https://gaia.ari.uni-
 
 ### Write a DS9 Region File for sources found:
 ```
-check_gaia -c "11h05m21.52536s,+43d31m34.9932s" -t "2023-12-21 21:07:40" --radius=45 --reg --reg-radius 15 -vv --url
+check_gaia -c "11h05m21.52536s,+43d31m34.9932s" -t "2023-12-21 21:07:40" --radius=45 --reg -vv --url
 DEBUG   : Input time is '2023-12-21 21:07:40.000'
 INFO    : For source at '11h05m21.53s, +43d31m35.0s' = '166.340d, +43.526d', found 2 Gaia matches within 45.0 arcsec
 VAST J1105.3+4332       Gaia DR3 778947608243864320:  6.3 arcsec        https://gaia.ari.uni-heidelberg.de/singlesource.html#gaiadr3_id=778947608243864320
 VAST J1105.3+4332       Gaia DR3 778947814402602752: 37.5 arcsec        https://gaia.ari.uni-heidelberg.de/singlesource.html#gaiadr3_id=778947814402602752
-Wrote ds9 region file VAST_J1105.3+4332_check_gaia.reg
+INFO    : Wrote ds9 region file VAST_J1105.3+4332_check_gaia.reg
 ```
 
 ### Search through XML files produced by Emil with CP sources.
