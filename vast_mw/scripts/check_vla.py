@@ -64,7 +64,7 @@ def main():
         help="Search radius (arcsec): if None, use FOV",
     )
     parser.add_argument(
-        "--reg", default=False, type=bool, help="Create ds9 region file"
+        "--reg", default=False, action="store_true", help="Create ds9 region file"
     )
     parser.add_argument(
         "--reg-radius", default=15, type=float, help="Radius for ds9 region file (arcsec)"
