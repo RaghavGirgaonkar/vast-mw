@@ -8,7 +8,8 @@ name = "vast_mw"
 version = "0.1.1"
 description = "Multi-wavelength searches for VAST sources"
 authors = [
-    { name = "David Kaplan", email = "kaplan@uwm.edu" }
+    { name = "David Kaplan", email = "kaplan@uwm.edu" },
+    {name = "Raghav Girgaonkar", email = "raghav.girgaonkar@gmail.com"}
 ]
 #readme = false
 requires-python = ">=3.7"

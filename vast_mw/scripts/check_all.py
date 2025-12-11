@@ -109,7 +109,7 @@ def main():
         sys.exit(1)
     args = parser.parse_args()
     log.remove()
-    log.add(sys.stderr, format=vast_mw.logformat, level="WARNING")
+    log.add(sys.stderr, format=vast_mw.logformat, level="INFO")
 
     sources, names = vast_mw._parse_input(args, require_time=True)
     if sources is None or len(sources) == 0:
@@ -133,7 +133,8 @@ def main():
                     out += f"\t{getattr(vast_mw, vast_mw.services[service][1])(k)}"
                 print(out)
             if args.reg:
-                vast_mw.create_regfile(
-                    results, radius=args.reg_radius, filename=src + f"_check_{service.lower()}"
-                )
-                log.info("Wrote ds9 region file " + f"{src}_check_{service.lower()}.reg")
+                if len(results) > 0:                    
+                    vast_mw.create_regfile(
+                        results, radius=args.reg_radius, filename=src + f"_check_{service.lower().replace(' ', '_')}"
+                    )
+                    log.info("Wrote ds9 region file " + f"{src}_check_{service.lower().replace(' ', '_')}.reg")
