@@ -94,7 +94,7 @@ def create_regfile(results, radius,filename):
         f.write("fk5\n")
         for k in keys:
             c = results[k]['coords']
-            f.write(f"circle({c.ra.to(u.deg).value},{c.dec.to(u.deg).value},{radius}\")\n")
+            f.write(f"circle({c.ra.to(u.deg).value},{c.dec.to(u.deg).value},{radius}\") # text=\"{k}\"\n")
     f.close()
 
 
